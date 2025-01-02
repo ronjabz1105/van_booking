@@ -56,6 +56,7 @@
                         <th>Departure Time</th>
                         <th>Arrival Time</th>
                         <th>Price</th>
+                        <th>Description</th>
                         <th>Status</th>
                         <th>Action</th>
                       </tr>
@@ -71,6 +72,7 @@
                         <td>{{$trip->departureTime}}</td>
                         <td>{{$trip->arrivalTime}}</td>
                         <td>${{$trip->price}}</td>
+                        <td>{!! Str::limit($trip->description,100)!!}</td>
                         <td>{{$trip->status == 1 ? 'active': 'inactive'}}</td>
                         <td>
                           <a href="{{route('trip.edit', $trip->id)}}" class="btn btn-success">Edit</a>

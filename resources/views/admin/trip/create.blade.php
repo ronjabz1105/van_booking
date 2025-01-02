@@ -66,19 +66,19 @@
                     
                     <div class="form-group">       
                         <label class="form-control-label">Destination</label>
-                        <input type="description" name="destination" placeholder="Destination" class="form-control rows3">
+                        <input type="text" name="destination" placeholder="Destination" class="form-control rows3">
                         @error('destination' ) <span class="text-danger">{{$message}}</span> @enderror
                     </div>
                      <div class="form-group">       
                         <label class="form-control-label">Place of Origin</label>
-                        <input type="description" name="placeOfOrigin" placeholder="Place of Origin" class="form-control rows3">
+                        <input type="text" name="placeOfOrigin" placeholder="Place of Origin" class="form-control rows3">
                         @error('placeOfOrigin' ) <span class="text-danger">{{$message}}</span> @enderror
                     </div>
                    
                       
                       <div class="form-group">
                         <label class="form-control-label">Departure Time</label>
-                        <input type=""  name="departureTime" placeholder="Departure Time " class="form-control">
+                        <input type="text"  name="departureTime" placeholder="Departure Time " class="form-control">
                         @error('departureTime' ) <span class="text-danger">{{$message}}</span> @enderror
                     </div>
                       
@@ -92,6 +92,11 @@
                       <label class="form-control-label">Price</label>
                       <input type="text" name="price" placeholder="Price" class="form-control rows3 col-md-3">
                       @error('price' ) <span class="text-danger">{{$message}}</span> @enderror
+                  </div>
+                  <div class="form-group">       
+                    <label class="form-control-label">Description</label>
+                    <textarea name="description" placeholder="Description" class="form-control rows3"></textarea>
+                    @error('description' ) <span class="text-danger">{{$message}}</span> @enderror
                   </div>
                     
                     </br>

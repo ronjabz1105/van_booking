@@ -16,8 +16,21 @@ protected $table='bookings';
         'tripId',
         'userId',
         'numberOfPassenger',
+        'passengerName',
+        'passengerEmail',
+        'passengerPhoneNumber',
+        'paymentStatus',
         'status'
        
         
 ];
+
+
+
+public function trip(){
+    return $this->hasOne('App\Models\Trip','id','tripId');
+
+}
+
+
 }

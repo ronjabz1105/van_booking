@@ -14,12 +14,14 @@ return new class extends Migration
         Schema::create('vans', function (Blueprint $table) {
         
             $table->id();
+            $table->unsignedBigInteger('adminId');
             $table->string('type');
             $table->string('model')->nullable();
             $table->string('color')->nullable();
             $table->string('capacity')->nullable();
             $table->string('plateNumber');
             $table->string('status')->default(1)->comment('1 active, 0 inactive');
+            $table->foreign('adminId')->references('id')->on('admins')->onDelete('cascade');
         });
     }
 

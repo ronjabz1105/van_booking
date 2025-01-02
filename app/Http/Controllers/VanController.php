@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Van;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class VanController extends Controller
 {
@@ -12,7 +13,7 @@ class VanController extends Controller
      */
     public function index()
     {
-        $vans= Van::paginate(10);
+        $vans= Van::where('adminId',Auth::user()->id)->paginate(10);
 
         return view('admin.van.index',[
             'vans'=>$vans,
@@ -46,7 +47,7 @@ class VanController extends Controller
             'model'=>$request->model,
             'color'=>$request->color,
             'plateNumber'=>$request->plateNumber,
-            
+            'adminId'=>Auth::user()->id,
             
     
            ]);

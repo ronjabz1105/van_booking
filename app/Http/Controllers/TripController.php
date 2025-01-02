@@ -6,6 +6,8 @@ use App\Models\Driver;
 use App\Models\Trip;
 use App\Models\Van;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class TripController extends Controller
 {
@@ -15,9 +17,7 @@ class TripController extends Controller
     public function index()
     {
        
-        $trips= Trip::paginate(10);
-        
-
+        $trips= Trip::where('adminId',Auth::user()->id)->paginate(10);
         return view('admin.trip.index',[
             'trips'=>$trips,
            
@@ -29,8 +29,8 @@ class TripController extends Controller
      */
     public function create()
     {
-        $vans=Van::all();
-        $drivers=Driver::all();
+        $vans=Van::all()->where('adminId',Auth::user()->id);
+        $drivers=Driver::all()->where('adminId',Auth::user()->id);
         return view('admin.trip.create',[
             'vans'=>$vans,
             'drivers'=>$drivers,
@@ -49,7 +49,8 @@ class TripController extends Controller
             'placeOfOrigin'=> 'required|string|max:225',
             'departureTime'=> 'required|string|max:225',
             'arrivalTime'=> 'required|string|max:225',
-            'price'=> 'required',
+            'price'=> 'required|decimal:0,2',
+            'description'=> 'required',
             
            
            ]);
@@ -62,7 +63,8 @@ class TripController extends Controller
             'departureTime'=>$request->departureTime,
             'arrivalTime'=>$request->arrivalTime,
             'price'=>$request->price,
-            
+            'description'=>$request->description,
+            'adminId'=>Auth::user()->id,
             
     
            ]);
@@ -85,8 +87,9 @@ class TripController extends Controller
     public function edit(Trip $trip)
 
     {
-        $vans=Van::all();
-        $drivers=Driver::all();
+       
+        $vans=Van::all()->where('adminId',Auth::user()->id);
+        $drivers=Driver::all()->where('adminId',Auth::user()->id);
 
         return view('admin.trip.edit',[
             'vans'=>$vans,
@@ -111,6 +114,8 @@ class TripController extends Controller
             'placeOfOrigin'=> 'required|string|max:225',
             'departureTime'=> 'required|string|max:225',
             'arrivalTime'=> 'required|string|max:225',
+            'price'=> 'required',
+            'description'=> 'required',
             
            
            ]);
@@ -122,6 +127,8 @@ class TripController extends Controller
             'placeOfOrigin'=>$request->placeOfOrigin,
             'departureTime'=>$request->departureTime,
             'arrivalTime'=>$request->arrivalTime,
+            'price'=>$request->price,
+            'description'=>$request->description,
             
             
     

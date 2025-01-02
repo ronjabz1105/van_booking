@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('drivers', function (Blueprint $table) {
             $table->id();
-
+            $table->unsignedBigInteger('adminId');
             $table->string('name');
             $table->string('gender')->nullable();
             $table->string('phone')->nullable();
             $table->string('address')->nullable();
             $table->string('license');
             $table->string('status')->default(1)->comment('1 active, 0 inactive');
-          
+            $table->foreign('adminId')->references('id')->on('admins')->onDelete('cascade');
       
         });
     }

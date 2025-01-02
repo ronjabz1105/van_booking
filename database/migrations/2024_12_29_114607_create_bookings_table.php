@@ -18,9 +18,12 @@ return new class extends Migration
             $table->unsignedBigInteger('userId');
             $table->integer('numberOfPassenger')->default(1);
             $table->string('passengerName')->nullable();
+            $table->string('passengerEmail')->nullable();
+            $table->string('passengerPhoneNumber')->nullable();
             $table->timestamps();
             $table->string('status')->default(1)->comment('1 active, 0 cancelled');
-            $table->foreign('tripId')->references('id')->on('users')->onDelete('cascade');
+            $table->string('paymentStatus')->default(0)->comment('1 paid, 0 unpaid');
+            $table->foreign('tripId')->references('id')->on('trips')->onDelete('cascade');
             $table->foreign('userId')->references('id')->on('users')->onDelete('cascade');
             
         });

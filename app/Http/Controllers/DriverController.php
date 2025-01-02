@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Driver;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class DriverController extends Controller
@@ -13,7 +14,7 @@ class DriverController extends Controller
     public function index()
     
     {
-        $drivers= Driver::paginate(10);
+        $drivers= Driver::where('adminId',Auth::user()->id)->paginate(10);
 
         return view('admin.driver.index',[
             'drivers'=>$drivers,
@@ -39,7 +40,7 @@ class DriverController extends Controller
         'address'=> 'required|string|max:225',
         'license'=> 'required|string|max:225',
         'gender'=> 'required|string|max:225',
-        //'status'=> 'nullable',
+        
        ]);
 
        Driver::create([
@@ -48,7 +49,7 @@ class DriverController extends Controller
         'address'=>$request->address,
         'license'=>$request->license,
         'gender'=>$request->gender,
-        
+        'adminId'=> Auth::user()->id,
 
        ]);
 
@@ -82,7 +83,7 @@ class DriverController extends Controller
             'address'=> 'required|string|max:225',
             'license'=> 'required|string|max:225',
             'gender'=> 'required|string|max:225',
-            //'status'=> 'nullable',
+            
            ]);
     
            $driver->update([

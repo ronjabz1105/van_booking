@@ -18,6 +18,7 @@ protected $table='vans';
         'color',
         'capacity',
         'plateNumber',
+        'adminId',
         
 ];
 public function trip(){

@@ -20,7 +20,9 @@ class Trip extends Model
         'arrivalTime',
         'destination',
         'placeOfOrigin',  
-        'price',  
+        'price',
+        'description',  
+        'adminId',
 ];
 
 public function driver(){

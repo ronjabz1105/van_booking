@@ -85,6 +85,11 @@
                       <input type="text" name="price" placeholder="Price" class="form-control rows3" value="{{$trip->price}}">
                       @error('price' ) <span class="text-danger">{{$message}}</span> @enderror
                     </div>
+                    <div class="form-group">       
+                      <label class="form-control-label">Description</label>
+                      <textarea name="description" placeholder="Description" class="form-control rows3" value="{{$trip->description}}">{{$trip->description}}</textarea>
+                      @error('description' ) <span class="text-danger">{{$message}}</span> @enderror
+                    </div>
                       </br>
                     <div class="form-group">       
                       <input type="submit" value="Update" class="btn btn-primary">

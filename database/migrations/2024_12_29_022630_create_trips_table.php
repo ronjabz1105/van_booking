@@ -16,16 +16,19 @@ return new class extends Migration
 
             $table->unsignedBigInteger('vanId');
             $table->unsignedBigInteger('driverId');
+            $table->unsignedBigInteger('adminId');
             $table->string('departureTime');
             $table->string('arrivalTime');
             $table->string('destination');
             $table->string('placeOfOrigin');
-            $table->decimal('price:0,2');
+            $table->decimal('price');
+            $table->string('description');
             $table->string('status')->default(1)->comment('2 delayed,1 ontime, 0 cancelled');
             $table->timestamps();
 
             $table->foreign('vanId')->references('id')->on('vans')->onDelete('cascade');
             $table->foreign('driverId')->references('id')->on('drivers')->onDelete('cascade');
+            $table->foreign('adminId')->references('id')->on('admins')->onDelete('cascade');
         });
     }
 

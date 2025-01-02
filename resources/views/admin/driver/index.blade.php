@@ -66,7 +66,7 @@
                         <td>{{$driver->status == 1 ? 'active': 'inactive'}}</td>
                         <td>
                           <a href="{{route('driver.edit', $driver->id)}}" class="btn btn-success">Edit</a>
-                          <a href="{{route('driver.show', $driver->id)}}" class="btn btn-info">Show</a>
+                          <a href="{{route('driver.show', $driver->id)}}" class="btn btn-info d-inline">Show</a>
                          
                         
                           <form action="{{route('driver.destroy',$driver->id)}}" method="POST" class="d-inline">

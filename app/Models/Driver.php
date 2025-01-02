@@ -18,6 +18,7 @@ protected $table='drivers';
         'address',
         'license',
         'gender',
+        'adminId',
         
 ];
 
